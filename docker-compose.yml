@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  lftp-mirror:
+    build: .
+    environment:
+      - FTP_HOST=${FTP_HOST}
+      - FTP_USER=${FTP_USER}
+      - FTP_PASS=${FTP_PASS}
+      - FTP_SOURCE=${FTP_SOURCE}
+      - FTP_TARGET=${FTP_TARGET}
+    image: thelebster/lftp-mirror
+    restart: always
+    container_name: lftp-mirror
+    volumes:
+      - ./sync:${FTP_TARGET}
