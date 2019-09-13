@@ -8,6 +8,12 @@ FTP_SOURCE=/
 FTP_TARGET=/sync
 ```
 
+To use LFTP over SSH:
+
+```
+FTP_HOST=sftp://ftp.example.com
+```
+
 Update `crontab` to set the required frequency. The default value runs the sync every hour. Check the https://crontab.guru to explore more options.
 
 ```
@@ -28,6 +34,19 @@ docker-compose up -d
 
 ```
 FTP_HOST=ftp.example.com FTP_USER=user FTP_PASS=password FTP_SOURCE=/ FTP_TARGET=./sync ./mirror.sh
+```
+
+### Test
+
+```
+lftp -e "
+set ssl:verify-certificate no;
+set sftp:auto-confirm yes;
+open sftp://ftp.example.com;
+user user password;
+ls -l;
+bye;
+"
 ```
 
 Check the https://lftp.yar.ru/lftp-man.html to explore more options.

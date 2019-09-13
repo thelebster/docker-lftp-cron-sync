@@ -11,6 +11,7 @@ SOURCEFOLDER=$FTP_SOURCE || '/'
 
 lftp -e "
 set ssl:verify-certificate no;
+set sftp:auto-confirm yes;
 open $HOST;
 user $USER $PASS;
 mirror \

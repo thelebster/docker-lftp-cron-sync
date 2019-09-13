@@ -1,8 +1,8 @@
 FROM alpine:3.8
 
-MAINTAINER Anton Lebedev <mailbox@lebster.me>
+LABEL maintainer="Anton Lebedev <mailbox@lebster.me>"
 
-RUN apk add --no-cache bash curl lftp
+RUN apk add --no-cache bash curl lftp openssh libressl
 
 COPY mirror.sh /
 
